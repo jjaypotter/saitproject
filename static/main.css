@@ -1,0 +1,56 @@
+  body {
+    margin: 0;
+    background-color: #78fee0;
+  }
+
+  header {
+    display: flex;
+    background-color: #4bc2c5;
+    justify-content: space-between;
+    height: 5vw;
+  }
+
+  .logo {
+    height: 5vw;
+    width: 15vw;
+    background-image: url(https://picsum.photos/id/237/200/300);
+    /* background-size: auto; */
+    background-size: cover;
+    background-position: center;
+  }
+
+
+  ul.navul {
+    margin: 0;
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    min-width: 40vw;
+    height: 5vw;
+    align-items: center;
+  }
+
+  li {
+    text-align: center;
+    margin: 0;
+    background-color: #4bc2c5;
+
+  }
+
+
+  a {
+    /* font-size: 20px; */
+    color: #FFF;
+    font-size: 1.5vw;
+    text-decoration: none;
+  }
+
+.hero {
+
+  width: 100vw;
+  height: 80vw;
+  background-color: black;
+}
+
+
