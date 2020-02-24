@@ -1,8 +1,10 @@
-  body {
+
+/* set the site overall background color and style */
+body {
     margin: 0;
     background-color: #555;
     font-size: 0.5vw;
-  }
+}
 
 header {
   width: 100vw;
@@ -16,6 +18,7 @@ header {
   grid-template-rows: 1fr 4fr 3fr;
 }
 
+/* set navigating bar style and element */
 nav {
   grid-column-start: 1 ;
   grid-column-end: span3 ;
@@ -23,40 +26,32 @@ nav {
   flex-direction: row;
   justify-content: space-between;  
 }
-
-
 .logo {
 margin-top: 2em;
 margin-left: 2em;
 height: 10vh;
 }
-
-
 .navul {
-    margin: 0;
-    list-style: none;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    min-width: 50vw;
-    align-items: center;
-  }
+  margin: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  min-width: 50vw;
+  align-items: center;
+}
+li {
+  text-align: left;
+  margin: 0;
+}
+a {
+  color: #FFF;
+  font-size: 2.5vh;
+  text-decoration: none;
+  Font-Family: 'Source Sans Pro', Sans-Serif;
+}
 
-  li {
-    text-align: left;
-    margin: 0;
-  }
-
-
-  a {
-    /* font-size: 20px; */
-    color: #FFF;
-    font-size: 2.5vh;
-    text-decoration: none;
-    Font-Family: 'Source Sans Pro', Sans-Serif;
-  }
-
-
+/* set the hero text font size and location */
 .hero_text{
   font-size: 8vh;
   grid-column-start: 4;
@@ -65,7 +60,7 @@ height: 10vh;
   Font-Family: 'Playfair Display', Serif;
 }
 
-
+/* set the style for elements in the main section */
 .category_text{
   font-size: 8vh;
   color: #FFF;
@@ -73,8 +68,6 @@ height: 10vh;
   margin: auto;
   text-align: center;
 }
-
-
 main {
   margin: auto;
   padding: 0;
@@ -83,30 +76,21 @@ main {
   justify-content: space-evenly;
   flex-wrap: wrap;
 }
-
-
 h1 {
 font-size: 2vw;
 Font-Family: 'Playfair Display', Serif;
 color: black;
 }
-
 h3 {
   font-size: 3vh;
   color: #FFF;
   margin: 0.5vh;
-
 }
-
-
-
 form {
 display: flex;
 margin: auto;
 flex-direction: column;
 }
-
-
 footer {
   color: #EEE;
   font-size: 1vw;
@@ -115,30 +99,27 @@ footer {
 }
 
 
+/* default style for the forms*/
 .form_label {
   font-size: 2vw;
   text-align: left;
 }
-
 .myEmail {
-  width: 30vw;
+  width: 50vw;
   height: 2em;
 }
-
 .myNote {
-  width: 30vw;
+  width: 50vw;
   height: 4em;
 }
-
 .content {
   width: 50vw;
   display: flex;
   flex-direction: column;
   margin: auto;
 }
-
 form.signUp {
-    max-width: 80ch;
-    margin: auto;
+  max-width: 80ch;
+  margin: auto;
 }
 

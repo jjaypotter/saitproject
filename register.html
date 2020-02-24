@@ -4,9 +4,58 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Registration</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css.map" integrity="undefined" crossorigin="anonymous" />
   <link rel="stylesheet" href="static/css/main.css">
   <link href="https://fonts.googleapis.com/css?family=Playfair+Display:400,700,700i|Source+Sans+Pro" rel="stylesheet">
+<style>
+/* Desktop First */
+p {
+  display: flex;
+}
+.signup {
+  margin: auto;
+  width: 50vw;
+  display: flex;
+}
+label {
+  font-size: 4vh;
+  width: 15ch;
+}
+input:focus {
+  background-color: pink;
+}
+label::before {
+content: "*";
+}
+
+
+@media screen and (max-width: 400px) {
+p {
+width: 80vw;
+display: flex;
+flex-direction: column;
+margin:auto;
+}
+label {
+width: 60vw;
+font-size: 4vh;
+margin-top: 1ch;
+}
+input, textarea {
+width: 60vw;
+font-size: 3vh;
+margin-bottom: 0.5ch;
+}
+label::before {
+content: "*";
+}
+}
+
+</style>
+
 </head>
+
+
 <body>
   <nav>
     <img class="logo" src="static/pics/logo.png" alt="MY logo">
@@ -14,27 +63,49 @@
       <li><a href="index.html">HOME</a></li>
       <li><a href="contact.html">CONTACT US</a></li>
       <li><a href="packages.html">PACKAGES</a></li>
-      <li><a href="#">LOGIN</a></li>
+      <li><a href="#">LOGIN</a></li>    <!--under construction-->
       <li><a href="register.html">SIGNUP</a></li>
     </ul>
   </nav>
 
-<div class="content">
-  <h1>Example Contact Form</h1>
+<h1>Please enter your information <br> Our staff will contact you shortly regarding your trip plan!</h1>
+<br>
+<br>
 
-  <form class="signUp" action="#" method="post">
-    <label for="name">Full Name</label>
-    <input type="text" name="name" id="name" placeholder="Enter your full name" required>
 
-    <label for="email">Email</label>
-    <input type="email" name="email" id="email" placeholder="Enter your email" required>
-    
-    <label class="full-width" for="message">Message</label>
-    <textarea class="full-width" name="message" id="message" placeholder="Enter your message" required></textarea>
-
-    <input class="full-width" type="submit" name="submit" value="Send">
-  </form>
+<div class="signup">
+<form action="#" method="post">
+<p>
+  <label for="fname">First Name</label>
+  <input type="text" name="fname" id="fname" placeholder="Enter your first name" required>
+</p>
+<p>
+  <label for="lname">Last Name</label>
+  <input type="text" name="lname" id="lname" placeholder="Enter your last name" required>
+</p>
+<p>
+  <label for="address">Address</label>
+  <input type="text" name="address" id="address" placeholder="Enter your address" required>
+</p>
+<p>
+  <label for="city">City</label>
+  <input type="text" name="city" id="city" placeholder="Enter City Name" required>
+</p>
+<p>
+  <label for="province">Province</label>
+  <input type="text" name="province" id="province" placeholder="Enter Province Name" required>
+</p>
+<p>
+  <label for="postcode">Post Code</label>
+  <input type="text" name="postcode" id="postcode" placeholder="Enter Your Post Code" required></textarea>
+</p>
+<input type="submit" name="submit" value="Send">
+</form>
 </div>
-</body>
 
+
+
+
+<script src="static/js/register.js"></script>
+</body>
 </html>
