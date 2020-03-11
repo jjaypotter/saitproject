@@ -1,0 +1,50 @@
+doctype html
+head
+  meta(charset='UTF-8')
+  meta(name='Order' content='Order')
+  title Register
+  link(rel='stylesheet' type='text/css' href='CSS/order.css')
+  link(href='https://fonts.googleapis.com/css?family=Merriweather|Muli:300' rel='stylesheet')
+// Gloal nav bar with logo
+header.header-container
+  .logo
+    a(href='index' title='Welcome to Travel Experts')
+      img(src='img/logo_other.JPG' width='250')
+  nav
+    ul
+      li.nav-li
+        a(href='index')
+          strong Home
+      li.nav-li
+        a(href='register')
+          strong Register
+      li.nav-li
+        a(href='contact')
+          strong Contact
+main
+  h1 Order Form
+  div
+    // information filled out in the form will be collected to corresponding account of getform.io.
+    form.order-form(method='POST' action='/order_form')
+      label userID: * 
+      input#userID(type='text' rules='required|min:3' name='userID' placeholder='Enter your userID.' required='')
+      small#alert-ID
+      label Password: * 
+      input#password(type='text' rules='required|min:3' name='password' placeholder='Enter your password.' required='')
+      small#alert-PW
+      // The Package Information below should be brought by whatever customer ordered; it's not supposed to be typed in here.
+      label Package Name:  
+      input#pkgName(type='text' rules='required|min:3' name='pkgName' required='')
+      label Package Description:  
+      input#pkgDesc(type='text' rules='required|min:3' name='pkgDesc' required='')
+      label Package Start-Date:  
+      input#start-date(type='text' rules='required|min:3' name='start-date' required='')
+      label Package End-Date:  
+      input#end-date(type='text' rules='required|min:3' name='end-date' required='')
+      label Package Price:  
+      input#pkgPrice(type='text' rules='required|min:3' name='pkgPrice' required='')
+      label Special Request: 
+      textarea(name='message' placeholder='Anything you would like to tell us?')
+      br
+      input#submit(type='submit' name='submit' value='Submit your booking.')
+script(src='JS/order.js')
