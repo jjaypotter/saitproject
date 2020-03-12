@@ -23,8 +23,20 @@ header.header-container
           strong Contact
 // Contact Information for the agency and individual agents
 main
+
+  h3 Agents
+  table
+    for item in result
+      tr
+        th= item.AgtFirstName
+        th= item.AgtLastName
+        th= item.AgtBusPhone
+        th= item.AgtEmail
+
+
+
   h1 Contact Information
-  h2.agency Agency: 
+  h2.agency Contact Our Agency: 
   p
     | 101 - 604 14 Ave SW
     br
@@ -37,9 +49,4 @@ main
   h2.contact Contact: 
   h3 Office
   p (780) 246-2067
-  h3 Agents
-  p
-    ul
-      li.agent Yeji Soh: (780) 246-2067
-      li.agent Jason Smith: (403) 123-5678
-      li.agent Amy Boston: (403) 567-8900
+  
