@@ -3,13 +3,13 @@ head
   meta(charset='UTF-8')
   meta(name='Order' content='Order')
   title Register
-  link(rel='stylesheet' type='text/css' href='CSS/order.css')
+  link(rel='stylesheet' type='text/css' href='../CSS/order.css')
   link(href='https://fonts.googleapis.com/css?family=Merriweather|Muli:300' rel='stylesheet')
 // Gloal nav bar with logo
 header.header-container
   .logo
     a(href='index' title='Welcome to Travel Experts')
-      img(src='img/logo_other.JPG' width='250')
+      img(src='../img/logo_other.JPG' width='250')
   nav
     ul
       li.nav-li
@@ -33,18 +33,24 @@ main
       input#password(type='text' rules='required|min:3' name='password' placeholder='Enter your password.' required='')
       small#alert-PW
       // The Package Information below should be brought by whatever customer ordered; it's not supposed to be typed in here.
+      input#pkgID(type='hidden' rules='required|min:3' name='pkgID' value=pkDetails.PackageId required='' readonly)
       label Package Name:  
-      input#pkgName(type='text' rules='required|min:3' name='pkgName' required='')
+      input#pkgName(type='text' rules='required|min:3' name='pkgName' value=pkDetails.PkgName required='' readonly)
       label Package Description:  
-      input#pkgDesc(type='text' rules='required|min:3' name='pkgDesc' required='')
+      input#pkgDesc(type='text' rules='required|min:3' name='pkgDesc' value=pkDetails.PkgDesc required='' readonly)
       label Package Start-Date:  
-      input#start-date(type='text' rules='required|min:3' name='start-date' required='')
+      input#start-date(type='text' rules='required|min:3' name='start-date' value=pkDetails.PkgStartDate required='' readonly)
       label Package End-Date:  
-      input#end-date(type='text' rules='required|min:3' name='end-date' required='')
+      input#end-date(type='text' rules='required|min:3' name='end-date' value=pkDetails.PkgEndDate required='' readonly)
       label Package Price:  
-      input#pkgPrice(type='text' rules='required|min:3' name='pkgPrice' required='')
+      input#pkgPrice(type='text' rules='required|min:3' name='pkgPrice' value=pkDetails.PkgBasePrice required='' readonly)
+      label Traveler Count:  
+      input#travelerCount(type='number' rules='required' name='travelerCount' required='')
       label Special Request: 
       textarea(name='message' placeholder='Anything you would like to tell us?')
       br
       input#submit(type='submit' name='submit' value='Submit your booking.')
-script(src='JS/order.js')
+
+
+script(src='../JS/order.js')
+

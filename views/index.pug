@@ -24,5 +24,22 @@ p.main-p
   |         Please take a look at some photos down here!
 // Gallary: images brought from index.js
 .gallery
-script(src='JS/index.js')
+
+//- this javascript along with above div.gallery can be removed, packages should be rendered from backend 
+script(src='JS/index.js')   
+
+//package export test
+//- table
+//-   for item in gallery1
+//-     tr
+//-       th= item.PackageID
+//-       th= item.PkgName
+//-       th= item.PkgStartDate
+//-       th= item.PkgEndDate
+
+div!= gallery2
+
+
+
+
 footer Copyright &copy; Yeji Soh, 2020 

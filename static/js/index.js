@@ -1,7 +1,3 @@
-// Author:        Yeji Soh
-// Date:          02/23/2020
-// Course Module: CPRG 210 FRONTEND
-// Assignment:    Individual HTML/CSS/Javascript Assignment
 
 // Gallery Array
 const pics = [
@@ -93,7 +89,6 @@ const pics = [
 
 // Assign values to Gallery
 let gallery = '';
-
 pics.forEach(function(pic) {
 gallery +=  
 `<figure class="${pic.figClass}">
@@ -111,5 +106,13 @@ gallery +=
 </figure>`;
 });
 
+
+// gys.forEach(function(gy) {
+//   console.log(gy.PkgName)
+//   });
+
+
+
 const div = document.querySelector('.gallery');
 div.innerHTML = gallery;
+
