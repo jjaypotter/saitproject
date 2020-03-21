@@ -1,14 +1,21 @@
+/* Author:        Jin Li (most parts, including database, server connection, and encryption), 
+                  Yeji Soh(Overall structure and show package info on the images.), 
+                  Jacobus Badenhorst(package date validation) */
+//Date:          03/20/2020 
+//Course Module: CPRG 210 XM5
+//Assignment:    Proj-207 Travel Experts
+
+
+// Import modules
 const express = require('express');
 const app = express();
-// const path = require('path');
 const streamParser = require('body-parser');
-// const fs = require('fs');
 const mysql = require('mysql');
 const crypto = require('crypto');
 const textgen = require("./custom_modules/textgen");
+const moment = require('moment');
 
-
-// some configuration
+// Some configurations
 let pool = mysql.createPool({
   host: "ec2-35-164-148-141.us-west-2.compute.amazonaws.com",
   user: "root",
@@ -16,10 +23,16 @@ let pool = mysql.createPool({
   database: "travelexpert",
   dateStrings:"date"
 });
+
+// Encryption
 const hashsalt = 'd9399cd68197e17f7e656b481e217483';
 app.use(streamParser.urlencoded({ extended: true }));
+
+// Set pug engine
 app.set("views", __dirname + "/views");
 app.set("view engine", "pug");
+
+// Use static folder for css, images, and javascript
 app.use(express.static(__dirname + '/static'));
 
 
@@ -38,26 +51,47 @@ app.get('/', (req, res)=> {
     let pkquery = "select * from packages";
     connection3.query(pkquery, function(err, packages) {
       if (err) throw err;
-      // let content2 = '<h1> try to see </h1>';
       let content2 = '';
+      
+      // Check if package date is valid. If end date >= current data, display. If start date < current date, make start date bold
+      let dateColor = '';
+      let currentDate = moment();
       packages.forEach(package => {
+
+        // Get start and end dates
+        let startDate = moment(`${package.PkgStartDate}`);
+        let endDate = moment(`${package.PkgEndDate}`);
+
+        // Set dates color to red if past, yellow if ongoing, and green if not happened yet
+        if (currentDate >= endDate){
+          dateColor = 'red';
+        } else if (currentDate >= startDate && currentDate <= endDate) {
+          dateColor = 'yellow';
+        } else {
+          dateColor = 'green';
+        }
+
+        // Insert package data into html string with variables and classes embedded
         let orderurl = "order/" + package.PackageId;
-        content2 += `<figure class=""> <a href=${orderurl} target="_blank">
-                    <img src="img/logo_index.JPG" class="" alt="${package.PkgName}">
-                    <div class="">
-                    <p>Location: <strong>${package.PkgName}</strong> <br>Avaialbel: In Summer, ${package.PkgName}, In Winter, ${package.PkgName} <br></p>
-                    </div>
+        content2 += `<figure class="img_${package.PackageId}"> <a href=${orderurl} target="_blank">
+                    <img src="../img/${package.PkgImg}.JPG" class="gallery_img" alt="${package.PkgName}"> 
+                    <section class="overlay_${package.PackageId}">
+                    <p class=${dateColor}>
+                    Name: <strong>${package.PkgName}</strong> <br>
+                    Description: ${package.PkgDesc} <br>
+                    Period: ${package.PkgStartDate} - ${package.PkgEndDate} <br>
+                    Price: CAD ${package.PkgBasePrice}
+                    </p>
+                    </section>
                     </a>
                     </figure>`
       });
-      // console.log(content2);
-      res.render("index", {gallery1:packages, gallery2:content2});
+
+      res.render("index", {gallery2:content2});
       connection3.release();
     });
   });
 });
-
-
 
 app.get('/index', (req, res) => {
   res.redirect("/");
@@ -67,22 +101,33 @@ app.get('/register', (req, res) => {
   res.render("register")
 });
 
-
-// show some agents from database, and additional contact info
+// show agents from each agency from database, and additional contact info
 app.get('/contact', (req, res) => {
   pool.getConnection(function(err, connection) {
     if (err) throw err;
     console.log(" contact connection is ok");
-    let agentsquery = "select * from agents";
-    connection.query(agentsquery, function(err, result, fields) {
+    let agencyquery = "select * from agencies";
+    connection.query(agencyquery, function(err, result) {
       if (err) throw err;
-      res.render("contact", {result:result});
-      connection.release();
+      agencies = result;
+  
+      let agentsquery = "select * from agents where agents.AgencyId = ?";
+      connection.query(agentsquery,['1'], function(err, result2) {
+        if (err) throw err;
+        agents1 = result2;
+        connection.query(agentsquery,['2'], function(err, result3) {
+          if (err) throw err;
+          agents2 = result3
+          res.render("contact", {agencies:agencies, agentList1:agents1, agentList2:agents2});
+          connection.release();
+        });
+      });
     });
   });
 });
+  
 
-
+// get thank-you pages
 app.get('/thanks-register', (req, res) => {
   res.render("thanksRegister")
 });
@@ -124,6 +169,7 @@ app.post("/post_form", (req, res) => {
 });
 
 
+// main order form
 app.post("/order_form", (req, res) => {
   let custAccount = req.body.userID;
   let custPw = req.body.password;
@@ -159,6 +205,7 @@ app.post("/order_form", (req, res) => {
 });
 
 
+// if page not found, paste in message
 app.get('*', (req,res)=>{
     res.status(404).send('Sorry, we can NOT find the file reqeusted.');
 });

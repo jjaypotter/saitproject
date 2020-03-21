@@ -1,17 +1,19 @@
 // Author:        Yeji Soh
-// Date:          02/23/2020
-// Course Module: CPRG 210 FRONTEND
-// Assignment:    Individual HTML/CSS/Javascript Assignment
+// Date:          03/20/2020
+// Course Module: CPRG 210 XM5
+// Assignment:    Proj-207 Travel Experts
 
 // Variables
 const userID = document.getElementById("userID")
 const password = document.getElementById("password")
 const pcode = document.querySelector('#pcode')
+const name = document.getElementById("name")
 const email = document.getElementById('email')
 const phone = document.getElementById('phone')
 const submit = document.getElementById('submit');
 let errmsg_ID = document.getElementById('alert-ID')
 let errmsg_PW = document.getElementById('alert-PW')
+let errmsg_name = document.getElementById('alert-name')
 let errmsg_pc = document.getElementById('alert-pcode')
 let errmsg_em = document.getElementById('alert-email')
 let errmsg_ph = document.getElementById('alert-phone')
@@ -29,6 +31,7 @@ const PWp = RegExp(patterns["PW_p"])
 const pp = RegExp(patterns["pcode_p"])
 const ep = RegExp(patterns["email_p"])
 const php = RegExp(patterns["phone_p"])
+
 
 // Validation on userID
 userID.addEventListener('blur', (e) => {
@@ -75,10 +78,8 @@ password.addEventListener('blur', (e) => {
 // Validation on Postal Code
 pcode.addEventListener('blur', (e) => {
     if (pcode.value.length == 0) {
-        errmsg_pc.innerHTML = "Postal Code must be provided."
-        errmsg_pc.classList.add('alert-pcode')
+        submit.disabled = false;
         pcode.classList.remove('active');
-        submit.disabled = true;
     } else if (pp.test(pcode.value) == false) {
         errmsg_pc.innerHTML = "Invalid postal code format,e.g. T2R 0M8 - blank is MUST."
         errmsg_pc.classList.add('alert-pcode')
@@ -132,5 +133,19 @@ phone.addEventListener('blur', (evt) => {
         errmsg_ph.classList.remove('alert-email');
         errmsg_ph.innerHTML = '';
         submit.disabled = false;
+    }
+})
+
+// Validation on Name
+name.addEventListener('blur', (e) => {
+    if (name.value.length == 0) {
+        errmsg_name.innerHTML = "Name must be provided."
+        errmsg_name.classList.add('alert-name')
+        name.classList.remove('active');
+        submit.disabled = true;
+    }
+    else if (name.value.length !==0 ) {
+        name.classList.add('active')
+        errmsg_name.innerHTML = ""
     }
 })
